@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#101412" />
+    <meta name="description" content="Salomon Elements — an immersive weather-led outdoor experience." />
+    <title>SALOMON — ELEMENTS / V1</title>
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/frame.css" />
+    <link rel="stylesheet" href="css/app.css?v=20261029-city-swipe" />
+  </head>
+  <body>
+    <div class="phone" id="salomon-app">
+      <!-- Icon system: no external font or icon library needed. -->
+      <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5.3-8 11.5-8 11.5S4 15.3 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+        <symbol id="i-cart" viewBox="0 0 24 24"><path d="M2 3h3l2.5 12h12L22 6H6M8 18h11"/><circle cx="9" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></symbol>
+        <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></symbol>
+        <symbol id="i-rain" viewBox="0 0 24 24"><path d="M7 16H6a4 4 0 0 1-.6-8A7 7 0 0 1 19 9.3 3.5 3.5 0 0 1 18 16h-1"/><path d="m9 16-1 5m5-5-1 5m5-5-1 5"/></symbol>
+        <symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 2v20M3.34 7l17.32 10M3.34 17 20.66 7M9.5 4.5 12 7l2.5-2.5M9.5 19.5 12 17l2.5 2.5M3.6 10.3l3.4-.9-.9-3.3M20.4 13.7l-3.4.9.9 3.3M6.1 17.9 7 14.6l-3.4-.9M17.9 6.1 17 9.4l3.4.9"/></symbol>
+        <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M20 17H6a4 4 0 0 1-.6-8A7 7 0 0 1 19 9.3 3.5 3.5 0 0 1 20 17Z"/></symbol>
+        <symbol id="i-wind" viewBox="0 0 24 24"><path d="M2 8h12a3 3 0 1 0-3-3M2 12h17a3 3 0 1 1-3 3M2 17h8a3 3 0 1 1-3 3"/></symbol>
+        <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24"><path d="M5 5 19 19M19 5 5 19"/></symbol>
+        <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 9 5-9 5-9-5 9-5Zm-9 10 9 5 9-5M3 17l9 5 9-5"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+        <symbol id="i-location" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3"/></symbol>
+        <symbol id="i-hanger" viewBox="0 0 24 24"><path d="M9 7a3 3 0 1 1 4 2.83V12l8 6-2 3H5l-2-3 9-6"/></symbol>
+        <symbol id="i-run" viewBox="0 0 24 24"><circle cx="14.6" cy="4.4" r="1.9"/><path d="M13 8.2 10.4 13.4m2.6-5.2 3.4 2.6 2.8-.9m-6.6-1.4-3.3.3-2 2.4m2.5 4.2 3.6 3-1.1 5m-2.5-8-2.6 4-3.6.4"/></symbol>
+        <symbol id="i-chill" viewBox="0 0 24 24"><circle cx="12" cy="4.4" r="1.9"/><path d="M12 8.2v6.3m0-6.3-2.4 2.6.6 3.4m1.8-6 2.4 2.6-.6 3.4m-1.8.8-1.9 6.8m1.9-6.8 1.9 6.8"/></symbol>
+        <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"/></symbol>
+      </svg>
+
+      <!-- 00 / Location entry: only the brand and the two requested location paths. -->
+      <section class="screen screen-entry" data-screen="entry" aria-labelledby="entry-title">
+        <div class="entry-content">
+          <div class="entry-brand">
+            <img src="assets/salomon-white.png" alt="Salomon" width="1861" height="245" />
+            <h1 class="visually-hidden" id="entry-title" tabindex="-1">Choose your location</h1>
+          </div>
+          <div class="entry-panel">
+            <button class="geolocate-button" type="button" data-action="use-location">
+              <svg class="icon" aria-hidden="true"><use href="#i-location"></use></svg>
+              <span data-show="geo-label">Allow location</span>
+              <svg class="icon icon-arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </button>
+            <div class="entry-or"><span></span> or <span></span></div>
+            <form id="city-form" class="city-form">
+              <label for="city-input">Enter a city</label>
+              <div class="city-input-wrap">
+                <input id="city-input" type="search" name="city" placeholder="Enter your city" autocomplete="off" enterkeyhint="go" />
+                <button type="submit" aria-label="Continue to this destination"><svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg></button>
+              </div>
+            </form>
+            <p class="entry-error" role="status" data-show="location-error"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 / Full-bleed weather scene -->
+      <section class="screen screen-scene" data-screen="scene" aria-labelledby="scene-title" hidden>
+        <div class="scene-backdrops" aria-hidden="true">
+          <img class="scene-image is-visible" id="scene-image-a" src="assets/backgrounds/matterhorn-cloud.webp" width="941" height="1672" alt="" />
+          <img class="scene-image" id="scene-image-b" src="assets/backgrounds/matterhorn-cloud.webp" width="941" height="1672" alt="" />
+        </div>
+        <div class="scene-shade" aria-hidden="true"></div>
+        <div class="avatar-layer" id="avatar-layer" aria-hidden="true"></div>
+
+        <img class="scene-logo" src="assets/salomon-logo-white.png" alt="Salomon" width="600" height="70" />
+        <header class="scene-header">
+          <div class="scene-heading">
+            <h1 id="scene-title" tabindex="-1">
+              <button class="scene-city-cycle" type="button" data-action="cycle-location" data-show="scene-location" aria-label="Show next city" title="Swipe left or right to change city">Matterhorn</button>
+              <span class="scene-temperature" data-show="scene-temperature">+3°</span>
+              <span class="scene-now-tag" title="Current conditions in the demo" aria-label="Current weather, demo">Now</span>
+            </h1>
+            <div class="city-pagination" role="img" aria-label="City 1 of 4"><span></span><span></span><span></span><span></span></div>
+          </div>
+        </header>
+
+        <div class="swipe-hint" aria-hidden="true">
+          <svg class="swipe-hint-arrow" viewBox="0 0 160 92" fill="none" aria-hidden="true">
+            <path class="swipe-gesture-shaft" d="M34 46H119" stroke="currentColor" stroke-width="11.25" />
+            <path d="M436 267Q139 583 55 668Q144 757 444 1074Q590 1230 688 1331H1036L771 1062Q574 862 500 791H1612V541H500Q597 446 771 268L1036 0H688Q612 78 436 267Z" transform="translate(9.525 76.04) scale(.045 -.045)" fill="currentColor" />
+            <circle class="swipe-gesture-dot" cx="119" cy="46" r="36" fill="currentColor" />
+          </svg>
+        </div>
+
+        <!-- Open state follows the reference: weather across the top, navigation down the side. -->
+        <nav class="control-cluster" aria-label="Configurator navigation" data-menu-open="false">
+          <div class="step-controls" id="step-controls" inert>
+            <button type="button" class="weather-choice" data-action="set-weather" data-weather="sun" aria-label="Sunny weather" title="Sun"><svg class="icon" aria-hidden="true"><use href="#i-sun"></use></svg></button>
+            <button type="button" class="weather-choice" data-action="set-weather" data-weather="rain" aria-label="Rainy weather" title="Rain"><svg class="icon" aria-hidden="true"><use href="#i-rain"></use></svg></button>
+            <button type="button" class="weather-choice" data-action="set-weather" data-weather="snow" aria-label="Snowy weather" title="Snow"><svg class="icon" aria-hidden="true"><use href="#i-snow"></use></svg></button>
+            <button type="button" class="weather-choice" data-action="set-weather" data-weather="cloud" aria-label="Overcast and windy weather" title="Cloud / Wind"><svg class="icon" aria-hidden="true"><use href="#i-wind"></use></svg></button>
+          </div>
+          <div class="step-controls section-panel panel-shop" id="panel-shop" role="region" aria-label="Store direction" inert>
+            <button type="button" class="compass-dial" data-action="start-compass" aria-label="Enable compass direction to the store">
+              <span class="compass-north" aria-hidden="true">N</span>
+              <svg class="compass-needle" id="compass-needle" viewBox="0 0 24 24" aria-hidden="true"><path class="needle-n" d="M12 3 15 12H9Z"/><path class="needle-s" d="M12 21 9 12h6Z"/></svg>
+            </button>
+            <div class="shop-readout" role="status" aria-live="polite">
+              <span class="shop-distance" data-show="shop-distance">—</span>
+              <span class="shop-name" data-show="shop-name">Salomon store</span>
+            </div>
+          </div>
+          <div class="step-controls section-panel panel-outfit" id="panel-outfit" inert>
+            <button type="button" class="outfit-toggle" id="outfit-toggle" role="switch" aria-checked="false" aria-label="Sport outfit (off: lifestyle)" data-action="toggle-universe">
+              <span class="toggle-thumb" aria-hidden="true"></span>
+              <svg class="icon toggle-icon icon-chill" aria-hidden="true"><use href="#i-chill"></use></svg>
+              <svg class="icon toggle-icon icon-run" aria-hidden="true"><use href="#i-run"></use></svg>
+            </button>
+          </div>
+          <div class="weather-menu">
+            <div class="weather-rail" id="weather-rail" inert role="group" aria-label="Open a section">
+              <svg class="rail-shape" viewBox="0 0 57 207" preserveAspectRatio="none" aria-hidden="true"><path id="rail-shape-path"></path></svg>
+              <button type="button" class="glass-dot section-weather" data-action="select-menu-section" data-menu-section="weather" aria-label="Weather" title="Weather"><svg class="icon" aria-hidden="true"><use href="#i-cloud"></use></svg></button>
+              <button type="button" class="glass-dot" data-action="select-menu-section" data-menu-section="shop" aria-label="Direction shop" title="Direction shop"><svg class="icon" aria-hidden="true"><use href="#i-compass"></use></svg></button>
+              <button type="button" class="glass-dot" data-action="select-menu-section" data-menu-section="outfit" aria-label="Custom avatar" title="Custom avatar"><svg class="icon" aria-hidden="true"><use href="#i-hanger"></use></svg></button>
+            </div>
+            <button type="button" class="glass-menu-toggle" data-action="toggle-menu" aria-label="Open weather and navigation menu" aria-expanded="false" aria-controls="weather-rail step-controls"><svg class="icon toggle-open-icon" aria-hidden="true"><use href="#i-cloud"></use></svg><svg class="icon toggle-close-icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
+            <button type="button" class="cart-shortcut" data-action="open-cart" aria-label="Buy the look" aria-expanded="false" aria-controls="cart-overlay" title="Buy the look"><span data-show="look-total">CHF 0</span><svg class="icon" aria-hidden="true"><use href="#i-cart"></use></svg></button>
+          </div>
+        </nav>
+        <div class="scene-toast" id="scene-toast" role="status" aria-live="polite"></div>
+        <div class="cart-overlay" id="cart-overlay" hidden>
+          <button class="cart-scrim" data-action="close-cart" type="button" aria-label="Close cart" tabindex="-1"></button>
+          <section class="look-cart" role="dialog" aria-modal="true" aria-labelledby="cart-title" tabindex="-1">
+            <div class="cart-handle" aria-hidden="true"></div>
+            <header class="cart-header"><button type="button" class="checkout-back" data-action="checkout-back" aria-label="Previous step" hidden><svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg></button><h2 id="cart-title" tabindex="-1">Buy the look</h2><button type="button" class="cart-close" data-action="close-cart" aria-label="Close cart"><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button></header>
+            <div class="cart-items" id="cart-items"></div>
+            <div class="checkout-content" id="checkout-content" hidden></div>
+            <button type="button" class="cart-restore" data-action="restore-cart" hidden>Restore all</button>
+            <footer class="cart-footer"><span>Total</span><strong id="cart-total"></strong></footer>
+            <button class="cart-buy" type="button" data-action="buy-look"><span id="cart-continue-label">Buy the look</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg></button>
+          </section>
+        </div>
+              </section>
+    </div>
+    <script src="js/frame.js"></script>
+    <script src="js/utils.js?v=20261029-lavaux"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/outfits.js?v=20261029-paris-lavaux-looks"></script>
+    <script src="js/state.js?v=20261029-payment-dots"></script>
+    <script src="js/shared.js"></script>
+    <script src="js/shop.js?v=20261029-device-compass"></script>
+    <script src="js/render.js?v=20261029-payment-dots"></script>
+    <script src="js/app.js?v=20261029-city-swipe"></script>
+  </body>
+</html>
