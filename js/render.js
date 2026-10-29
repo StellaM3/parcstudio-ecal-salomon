@@ -138,7 +138,10 @@
       });
       show('scene-location-small', p.label.toUpperCase());
       show('scene-temperature', App.utils.temperatures[location][weather]);
-      document.querySelector('.scene-now-tag').hidden = App.state.get('isWeatherPreview');
+      // Weather label under the city: "Sunny Now" for the live weather, just "Sunny" when previewing another one.
+      const nowTag = document.querySelector('.scene-now-tag');
+      nowTag.hidden = false;
+      nowTag.textContent = App.state.get('isWeatherPreview') ? w.label : w.label + ' Now';
       document.querySelector('.scene-temperature').hidden = false;
       show('weather-name', w.label);
       show('weather-detail', w.detail);

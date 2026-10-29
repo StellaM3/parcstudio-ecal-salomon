@@ -302,3 +302,30 @@ button:focus-visible, input:focus-visible { outline: 2px solid #ecffca; outline-
 .price-dot.is-open .price-bubble {transform:translate(0,-50%) scale(1);}
 .price-dot-bottom .price-bubble,.price-dot-shoes .price-bubble {left:auto;right:16px;transform:translate(4px,-50%) scale(.96);}
 .price-dot-bottom.is-open .price-bubble,.price-dot-shoes.is-open .price-bubble {transform:translate(0,-50%) scale(1);}
+
+/* Header layout C (compact bar): logo left, city + temperature right on one line, small dots centred below. */
+.scene-header {top:calc(var(--safe-top) + 7px); left:20px; right:20px;}
+.scene-heading {text-align:right;}
+.scene-heading h1 {font-size:17px; justify-content:flex-end; align-items:center; gap:7px; letter-spacing:-.02em; height:44px;}
+.scene-heading h1 .scene-temperature {font-size:15px; font-weight:500; opacity:.85; letter-spacing:0;}
+.scene-now-tag {display:block; position:absolute; top:37px; right:0; margin:0; font-size:11px; opacity:.85; white-space:nowrap;}
+.scene-now-tag[hidden] {display:none;}
+.scene-city-cycle {max-width:52cqw; text-align:right;}
+.city-pagination {position:absolute; top:52px; left:0; right:0; margin:0; gap:6px;}
+.city-pagination span {width:5px; height:5px;}
+
+/* Weather label: left-aligned under the city name (grid: city + temperature, then the label). */
+.scene-header {top:calc(var(--safe-top) + 20px);}
+.scene-heading h1 {display:grid; grid-template-columns:auto auto; justify-content:end; align-items:baseline; column-gap:7px; row-gap:4px; height:auto;}
+.scene-city-cycle {min-height:0;}
+.scene-now-tag {position:static; grid-column:1 / -1; justify-self:start; text-align:left;}
+.city-pagination {top:44px;}
+
+/* City arrows (Apax glyphs) at head height, replacing the pagination dots */
+.city-pagination {display:none;}
+.city-arrow {position:absolute;z-index:16;top:19cqh;width:44px;height:44px;display:grid;place-items:center;padding:0;border:0;background:none;color:rgba(255,255,255,.55);font-family:'Apax',sans-serif;font-size:22px;line-height:1;cursor:pointer;transition:color .2s ease,transform .2s ease;}
+.city-arrow-prev {left:10px;}
+.city-arrow-next {right:10px;}
+.city-arrow:hover,.city-arrow:focus-visible {color:#fff;}
+.city-arrow:active {transform:scale(.9);}
+@media (prefers-reduced-motion: reduce) {.city-arrow {transition:none;}.city-arrow:active {transform:none;}}

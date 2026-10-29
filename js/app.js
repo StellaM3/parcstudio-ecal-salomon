@@ -163,6 +163,10 @@
       if (suppressCityClick) return;
       cycleCity(1);
     },
+    'cycle-location-prev'() {
+      if (suppressCityClick) return;
+      cycleCity(-1);
+    },
     'toggle-menu'() {
       const isOpen = App.state.get('menuOpen');
       App.state.set('menuOpen', !isOpen);
